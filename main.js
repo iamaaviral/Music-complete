@@ -4,6 +4,7 @@ var Playingnumber = 0  ;
 var shuffle=0;
 var equal = 0;
 var loop = 0;
+var mute = 0;
 
 
 
@@ -438,6 +439,45 @@ console.log(nextSongNumber);
      }
 })
 
+/*--------------------------------------------Audio controls----------------------- */
+
+$('.volume').on('mouseover',function(){
+    $('#vol-control').removeClass('hidden');
+
+})
+
+$('.volume').on('mouseout',function(){
+    $('#vol-control').addClass('hidden');
+})
+
+var audio = document.querySelector('audio');
+var volume = document.getElementById("vol-control");
+var mute = audio.muted;
+
+volume.addEventListener("input", function(){
+ audio.volume = this.value / 100;
+ if ( audio.volume != 0){
+     $('.mute').removeClass('fa-volume-off').addClass('fa-volume-up');
+ }
+ else {
+    $('.mute').removeClass('fa-volume-up').addClass('fa-volume-off');
+ }
+});
+
+$('.mute').on('click', function(){
+  var audio = document.querySelector('audio');
+    if(mute == 0){
+    audio.muted = true;
+      $('.mute').removeClass('fa-volume-up').addClass('fa-volume-off');
+    mute = 1;
+  }
+  else {
+     audio.muted = false;
+      $('.mute').removeClass('fa-volume-off').addClass('fa-volume-up');
+     mute = 0;
+  }
+
+})
 
 //   addSongNameClickEvent(fileNames[0],1);
 // addSongNameClickEvent(fileNames[1],2);
