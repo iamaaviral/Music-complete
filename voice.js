@@ -11,7 +11,8 @@ var options = [
   "shuffle between songs",
   "next song",
   "previous song",
-  "show visualizer"
+  "show visualizer",
+  //something dummy
 ];
 var grammar =
   "#JSGF V1.0; grammar options; public <option> = " +
@@ -29,12 +30,12 @@ recognition.lang = "en-US";
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
-$(".fa-microphone").click(function() {
+$(".fa-microphone").click(function () {
   $(".fa-microphone").removeClass("active");
   recognition.start();
 });
 
-recognition.onresult = function(event) {
+recognition.onresult = function (event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
   // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
   // It has a getter so it can be accessed like an array
@@ -51,18 +52,14 @@ recognition.onresult = function(event) {
   if (result == "play the song") {
     $(".fa-microphone").addClass("active");
     var song = document.querySelector("audio");
-    $(".play-icon")
-      .removeClass("fa-play")
-      .addClass("fa-pause");
+    $(".play-icon").removeClass("fa-play").addClass("fa-pause");
     song.play();
   }
 
   if (result == "pause the song") {
     $(".fa-microphone").addClass("active");
     var song = document.querySelector("audio");
-    $(".play-icon")
-      .removeClass("fa-pause")
-      .addClass("fa-play");
+    $(".play-icon").removeClass("fa-pause").addClass("fa-play");
     song.pause();
   }
 
